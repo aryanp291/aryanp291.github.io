@@ -1,6 +1,6 @@
 <!doctype>
 <html>
 <body>
-<h>This is my first line in html</h>
+<h1>This is my first line in html</h1>
 </body>
 </html>
