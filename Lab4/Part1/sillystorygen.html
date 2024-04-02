@@ -6,21 +6,34 @@
   <title>Silly Story Generator</title>
   <style>
     body {
-      font-family: helvetica, sans-serif;
-      width: 350px;
+      font-family: Arial, sans-serif;
+      max-width: 400px;
+      margin: 0 auto;
+      padding: 20px;
     }
 
     label {
       font-weight: bold;
-    }
-
-    div {
-      padding-bottom: 20px;
+      display: block;
+      margin-bottom: 5px;
     }
 
     input[type="text"] {
       padding: 5px;
-      width: 150px;
+      width: 100%;
+      margin-bottom: 10px;
+    }
+
+    input[type="radio"] {
+      margin-right: 5px;
+    }
+
+    button {
+      padding: 10px 20px;
+      background-color: #ffc125;
+      color: #5e2612;
+      border: none;
+      cursor: pointer;
     }
 
     p {
@@ -32,20 +45,21 @@
   </style>
 </head>
 <body>
-  <div>
-    <label for="customname">Enter custom name:</label>
-    <input id="customname" type="text" placeholder="" />
-  </div>
+  <h1>Silly Story Generator</h1>
+  <label for="customname">Enter custom name:</label>
+  <input id="customname" type="text" placeholder="Enter a name" />
+  
   <div>
     <label for="us">US</label>
-    <input id="us" type="radio" name="ukus" value="us" checked />
+    <input id="us" type="radio" name="units" value="us" checked />
     <label for="uk">UK</label>
-    <input id="uk" type="radio" name="ukus" value="uk" />
+    <input id="uk" type="radio" name="units" value="uk" />
   </div>
-  <div>
-    <button class="randomize">Generate random story</button>
-  </div>
+  
+  <button class="randomize">Generate random story</button>
+  
   <p class="story"></p>
+  
   <script src="main.js"></script>
 </body>
 </html>
