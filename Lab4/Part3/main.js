@@ -52,12 +52,12 @@ class Ball {
     }
   }
 }
-<!--
+/*
 	Name: Aryankumar Patel
 	File: main.js
 	Date: 04-05-24
     This is the .js file for my fourth assignment part 3 in web development fundamentals it is a js supporting part3 of assignment.
- -->
+ */
 const balls = [];
 while (balls.length < 25) {
   const size = random(10, 20);
