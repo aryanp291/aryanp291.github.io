@@ -7,16 +7,15 @@ const height = (canvas.height = window.innerHeight);
 function random(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
-
-function randomRGB() {
-  return `rgb(${random(0, 255)},${random(0, 255)},${random(0, 255)})`;
-}
-/*
-	Name: Aryankumar Patel
+/* Aryankumar Patel
 	File: main.js
   Date: 04-05-24
     This is the .html file for my fourth assignment part 4 in web development fundamentals it is a java script suporrting my part4.
  */
+function randomRGB() {
+  return `rgb(${random(0, 255)},${random(0, 255)},${random(0, 255)})`;
+}
+
 class Shape {
     constructor(x, y, velX, velY) {
         this.x = x;
@@ -41,40 +40,40 @@ class Ball extends Shape {
         ctx.fill();
     }
 
-  update() {
-    if (this.x + this.size >= width) {
-      this.velX = -Math.abs(this.velX);
-    }
-
-    if (this.x - this.size <= 0) {
-      this.velX = Math.abs(this.velX);
-    }
-
-    if (this.y + this.size >= height) {
-      this.velY = -Math.abs(this.velY);
-    }
-
-    if (this.y - this.size <= 0) {
-      this.velY = Math.abs(this.velY);
-    }
-
-    this.x += this.velX;
-    this.y += this.velY;
-  }
-
-  collisionDetect() {
-    for (const ball of balls) {
-      if (!(this === ball)) {
-        const dx = this.x - ball.x;
-        const dy = this.y - ball.y;
-        const distance = Math.sqrt(dx * dx + dy * dy);
-
-        if (distance < this.size + ball.size) {
-            ball.color = this.color = randomRGB();
+    update() {
+        if (this.x + this.size > width) {
+          this.velX = -Math.abs(this.velX);
         }
-      }
+
+        if (this.x - this.size < 0) {
+          this.velX = Math.abs(this.velX);
+        }
+
+        if (this.y + this.size > height) {
+          this.velY = -Math.abs(this.velY);
+        }
+
+        if (this.y - this.size < 0) {
+          this.velY = Math.abs(this.velY);
+        }
+
+        this.x += this.velX;
+        this.y += this.velY;
     }
-  }
+
+    collisionDetect() {
+        for (const ball of balls) {
+            if (this !== ball && ball.exists) {
+                const dx = this.x - ball.x;
+                const dy = this.y - ball.y;
+                const distance = Math.sqrt(dx * dx + dy * dy);
+
+                if (distance < this.size + ball.size) {
+                    ball.color = this.color = randomRGB();
+                }
+            }
+        }
+    }
 }
 
 class EvilCircle extends Shape {
@@ -158,23 +157,22 @@ while (balls.length < 25) {
 const evilCircle = new EvilCircle(random(0, width), random(0, height));
 
 function loop() {
-  ctx.fillStyle = "rgba(0, 0, 0, 0.25)";
-  ctx.fillRect(0, 0, width, height);
+    ctx.fillStyle = "rgba(0, 0, 0, 0.25)";
+    ctx.fillRect(0, 0, width, height);
 
-  for (const ball of balls) {
-    if (ball.exists) {
-        ball.draw();
-        ball.update();
-        ball.collisionDetect();
+    for (const ball of balls) {
+        if (ball.exists) {
+            ball.draw();
+            ball.update();
+            ball.collisionDetect();
+        }
     }
-  }
 
-  evilCircle.draw();
-  evilCircle.checkBounds();
-  evilCircle.collisionDetect();
+    evilCircle.draw();
+    evilCircle.checkBounds();
+    evilCircle.collisionDetect();
 
-  requestAnimationFrame(loop);
+    requestAnimationFrame(loop);
 }
 
 loop();
-
