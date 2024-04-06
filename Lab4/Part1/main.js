@@ -1,9 +1,4 @@
-<div class="img-gallery">
-  <div class="displayed-img"></div>
-  <div class="thumb-bar"></div>
-  <button class="dark">Darken</button>
-  <div class="overlay"></div>
-</div>var displayedImage = document.querySelector('.displayed-img');
+var displayedImage = document.querySelector('.displayed-img');
 var thumbBar = document.querySelector('.thumb-bar');
 var btn = document.querySelector('button');
 var overlay = document.querySelector('.overlay');
