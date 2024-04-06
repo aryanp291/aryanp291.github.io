@@ -1,16 +1,12 @@
 const para1 = document.querySelector(".player1");
 const para2 = document.querySelector(".player2");
-
 const canvas = document.querySelector("canvas");
 const ctx = canvas.getContext("2d");
-
 const width = (canvas.width = window.innerWidth);
 const height = (canvas.height = window.innerHeight);
-
 function random(min, max) {
   return Math.floor(Math.random() * (max - min + 1) + min);
 }
-
 function Shape(x, y, velX, velY, exist) {
   this.x = x;
   this.y = y;
@@ -23,7 +19,6 @@ function Ball(x, y, velX, velY, color, size, exist) {
   this.color = color;
   this.size = size;
 }
-
 Ball.prototype.draw = function () {
   ctx.beginPath();
   ctx.fillStyle = this.color;
@@ -65,7 +60,12 @@ function Blackhole(x, y, velX, velY, color, size, exist) {
   this.color = "white";
   this.size = 15;
 }
-
+/*
+	Name: Aryankumar Patel
+	File: main.js
+  Date: 04-05-24
+    This is the .html file for my fourth assignment part 4 in web development fundamentals it is a java script suporrting my part4.
+ */
 Blackhole.prototype.draw = function () {
   ctx.beginPath();
   ctx.strokeStyle = this.color;
@@ -117,7 +117,6 @@ Blackhole.prototype.collision = function () {
     }
   }
 };
-
 function Redhole(x, y, velX, velY, color, size, exist) {
   Shape.call(this, x, y, 20, 20, exist);
   this.color = "red";
@@ -195,4 +194,27 @@ while (balls.length < 20) {
   balls.push(ball);
 }
 
-function loop()
+function loop() {
+  ctx.fillStyle = "rgb(0,0,0, .5)";
+  ctx.fillRect(0, 0, width, height);
+
+  for (let i = 0; i < balls.length; i++) {
+    if (balls[i].exist === true) {
+      balls[i].draw();
+      balls[i].update();
+      balls[i].collision();
+    }
+  }
+  hole.draw();
+  hole.setBound();
+  hole.collision();
+  hole.control();
+
+  hole2.draw();
+  hole2.setBound();
+  hole2.collision();
+  hole2.control();
+
+  requestAnimationFrame(loop);
+}
+loop();
