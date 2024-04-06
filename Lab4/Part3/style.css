@@ -1,0 +1,37 @@
+/* 
+  Name: Jeel Patel
+	File: style.css
+	Date: 03, march 2024
+	Description: CSS file connected with HTML file to design the page.
+*/
+
+  /* Resetting Margin for Body and HTML */
+  html, body {
+    margin: 0;
+  }
+  
+  /* Setting font family for HTML */
+  html {
+    font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    height: 100%;
+  }
+  
+  /* Setting overflow behavior for body and inheriting height from HTML */
+  body {
+    overflow: hidden;
+    height: inherit;
+  }
+  
+  /* Style for heading */
+  h1 {
+    font-size: 2rem;
+    letter-spacing: -1px;
+    position: absolute;
+    margin: 0;
+    top: -4px;
+    right: 5px;
+  
+    /* Style for text */
+    color: transparent;
+    text-shadow: 0 0 4px white;
+  }
