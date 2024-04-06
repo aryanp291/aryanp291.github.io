@@ -1,14 +1,9 @@
-var displayedImage = document.querySelector('.displayed-img');
-var thumbBar = document.querySelector('.thumb-bar');
-var btn = document.querySelector('button');
-var overlay = document.querySelector('.overlay');
-
-function thumbnailLoop() {
-  for (var i = 0; i < 5; i++) {
-    var newImage = document.createElement('img');
-    newImage.src = "images/pic" + (i+1) + ".jpg";
-    thumbBar.appendChild(newImage);
-  }
+const customName = document.getElementById('customname');
+const randomize = document.querySelector('.randomize');
+const story = document.querySelector('.story');
+function randomValueFromArray(array){
+  const random = Math.floor(Math.random()*array.length);
+  return array[random];
 }
 <!--
 	Name: Aryankumar Patel
@@ -16,22 +11,29 @@ function thumbnailLoop() {
 	Date: 04-05-24
     This is the .html file for my fourth assignment part 1 web development fundamentals it is a java script file supporting my part1 of assignemnt.
  -->
-thumbnailLoop();
-
-thumbBar.addEventListener('click', (e) => {
-  if(e.target.nodeName == "IMG") {
-    displayedImage.src = e.target.src;
+var storyText = "It was 94 fahrenheit outside,so :insertx: went for a walk. When they got to :inserty:, they stared in horror for a few moments, then :insertz:. Bob saw the whole thing, but was not surprised — :insertx: weighs 300 pounds, and it was a hot day.";
+var insertX = ["Willy the Goblin", "Big daddy", "Father Christmas"];
+var insertY = ["the soup kitchen", "Disneyland", "the White House"];
+var insertZ = ["spontaneously combusted", "melted into an puddle on the sidewalk", "turned into a slug and crawled away"];
+randomize.addEventListener('click', result);
+function result() {
+    var newStory = storyText;
+    var xItem = randomValueFromArray(insertX);
+    var yItem = randomValueFromArray(insertY);
+    var zItem = randomValueFromArray(insertZ);
+    newStory = newStory.replace(/:insertx:/g, xItem);
+    newStory = newStory.replace(/:inserty:/g, yItem);
+    newStory = newStory.replace(/:insertz:/g, zItem);
+    if(customName.value !== '') {
+    const name = customName.value;
+    newStory = newStory.replace('Bob', name);
   }
-});
-
-btn.addEventListener('click', (e) => {
-  if (e.target.className == 'dark') {
-    btn.className = 'light';
-    btn.textContent = 'Lighten';
-    overlay.style.backgroundColor = 'rgba(0,0,0,0.5)';
-  } else {
-    btn.className = 'dark';
-    btn.textContent = 'Darken';
-    overlay.style.backgroundColor = 'rgba(0,0,0,0)';
+  if(document.getElementById("uk").checked) {
+    const weight = Math.round(300 * 0.0714286) + 'stone';
+    const temperature =  Math.round((94 - 32) * 5 / 9) + 'centigrade';
+    newStory = newStory.replace('94 farenheit', temperature);
+    newStory = newStory.replace('300 pounds', weight);
   }
-});
+  story.textContent = newStory;
+  story.style.visibility = 'visible';
+}

@@ -1,17 +1,13 @@
 const canvas = document.querySelector("canvas");
 const ctx = canvas.getContext("2d");
-
 const width = (canvas.width = window.innerWidth);
 const height = (canvas.height = window.innerHeight);
-
 function random(min, max) {
   return Math.floor(Math.random() * (max - min + 1)) + min;
 }
-
 function randomRGB() {
   return `rgb(${random(0, 255)},${random(0, 255)},${random(0, 255)})`;
 }
-
 class Ball {
   constructor(x, y, velX, velY, color, size) {
     this.x = x;
@@ -21,35 +17,28 @@ class Ball {
     this.color = color;
     this.size = size;
   }
-
   draw() {
     ctx.beginPath();
     ctx.fillStyle = this.color;
     ctx.arc(this.x, this.y, this.size, 0, 2 * Math.PI);
     ctx.fill();
   }
-
   update() {
     if ((this.x + this.size) >= width) {
       this.velX = -(this.velX);
     }
-  
     if ((this.x - this.size) <= 0) {
       this.velX = -(this.velX);
     }
-  
     if ((this.y + this.size) >= height) {
       this.velY = -(this.velY);
     }
-  
     if ((this.y - this.size) <= 0) {
       this.velY = -(this.velY);
     } 
-  
     this.x += this.velX;
     this.y += this.velY;
   }
-
   collisionDetect() {
     for (const ball of balls) {
       if (this !== ball) {
@@ -65,9 +54,9 @@ class Ball {
 }
 <!--
 	Name: Aryankumar Patel
-	File: main3.js
+	File: main.js
 	Date: 04-05-24
-    This is the .html file for my fourth assignment part 3 web development fundamentals it is a java script file supporting my part3 of assignemnt.
+    This is the .js file for my fourth assignment part 3 in web development fundamentals it is a js supporting part3 of assignment.
  -->
 const balls = [];
 while (balls.length < 25) {
@@ -82,18 +71,14 @@ while (balls.length < 25) {
   );
   balls.push(ball);
 }
-
 function loop() {
   ctx.fillStyle = "rgba(0, 0, 0, 0.25)";
   ctx.fillRect(0, 0, width, height);
-
   for (const ball of balls) {
     ball.draw();
     ball.update();
     ball.collisionDetect();
   }
-
   requestAnimationFrame(loop); 
 }
-
 loop();
