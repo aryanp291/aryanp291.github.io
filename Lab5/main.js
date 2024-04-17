@@ -1,6 +1,5 @@
 const showHideBtn = document.querySelector('.show-hide');
 const commentWrapper = document.querySelector('.comment-wrapper');
-
 commentWrapper.style.display = 'none';
 
 showHideBtn.onclick = function() {
