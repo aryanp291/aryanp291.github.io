@@ -13,12 +13,14 @@ showHideBtn.onclick = function() {
     commentWrapper.style.display = 'none';
   }
 };
+
  /*
 	Name: Aryankumar Patel
 	File: index.html
 	Date: 04-16-24
     This is the .js file for my fourth assignment in web development fundamentals.
  */
+ 
 const form = document.querySelector('.comment-form');
 const nameField = document.querySelector('#name');
 const commentField = document.querySelector('#comment');
